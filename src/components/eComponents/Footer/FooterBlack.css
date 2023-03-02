@@ -102,10 +102,10 @@ a {
   height: 5rem;
   padding: 0.1rem;
   z-index: 1;
-  border-radius: 0.2rem;
+  border-radius: 0.4rem;
 }
 .input_footer {
-  border-radius: 0.2rem;
+  border-radius: 0.4rem;
   position: absolute;
   top: 0rem;
   left: 0;
@@ -133,6 +133,7 @@ a {
   border-radius: 0.5rem;
   line-height: 1rem;
   border: 0.2rem solid var(--mainColor);
+  /* border-radius: 4rem; */
 }
 .footer_sub {
   border-top: solid thin #f1f1f6;
@@ -141,7 +142,7 @@ a {
   font-size: 1.2rem;
   color: #888;
   font-weight: 300;
-  padding: 2rem;
+  padding: 2rem 0px 1rem;
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 0.2rem;
@@ -169,5 +170,10 @@ a {
   }
   .footer_part {
     flex-basis: 90%;
+  }
+  .footer_sub {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
   }
 }

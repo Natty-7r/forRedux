@@ -169,4 +169,9 @@ a {
   .footer_part {
     flex-basis: 90%;
   }
+  .footer_sub {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+  }
 }

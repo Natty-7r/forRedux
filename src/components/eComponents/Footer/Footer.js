@@ -123,8 +123,11 @@ export default () => {
         </div>
       </div>
       <div className="footer_sub">
-        Copyright 2023 Eyu leather |Developed by
-        <span className="developer"> DEV-X</span>
+        <span>Copyright 2023 Eyu leather</span>
+        <span>
+          |Developed by
+          <span className="developer"> DEV-X</span>
+        </span>
       </div>
     </section>
   );
