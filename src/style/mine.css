@@ -1,0 +1,49 @@
+* {
+	padding: 0px;
+	margin: 0px;
+}
+.header {
+	display: flex;
+	justify-content: space-between;
+	height: 50px;
+}
+.header .logo {
+	flex-basis: 10%;
+	background-color: red;
+}
+.header .header-lists {
+	list-style: none;
+	text-transform: capitalize;
+	flex-basis: 90%;
+	background-color: blueviolet;
+	color: white;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+.body {
+	text-align: center;
+}
+.time {
+	position: absolute;
+	top: 60px;
+	right: 20px;
+	color: rgba(0, 0, 0, 0.56);
+}
+.toggle-btn {
+	position: absolute;
+	top: 55%;
+	left: 45%;
+	padding: 4px 32px;
+	font-size: 150%;
+	border-radius: 5px;
+	text-transform: capitalize;
+}
+.on {
+	background-color: white;
+	color: black;
+}
+.off {
+	background-color: black;
+	color: white;
+}
