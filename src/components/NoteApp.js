@@ -2,10 +2,13 @@ import { useEffect, useState, useReducer } from "react";
 import notesReducer from "../reducers/note";
 import NoteForm from "./NoteForm";
 import NoteList from "./NoteList";
+import NoteContext from "../context/NoteContext";
+import note from "../reducers/note";
 
 export default () => {
   const [title, setTitle] = useState("");
   const [noteContent, setContent] = useState("");
+  const [lName, setLName] = useState("fek");
   const [notes, notesDispatch] = useReducer(notesReducer, []);
 
   useEffect(() => {
@@ -21,20 +24,30 @@ export default () => {
   const removeNote = (title) => {
     notesDispatch({ type: "remove", title });
   };
+  const changeLName = () => {
+    // to show context is changed from consumer by passing function to it
+    lName == "fek" ? setLName("fekadu") : setLName("fek");
+  };
   return (
-    <div className="whole">
+    <NoteContext.Provider
+      value={{
+        notes,
+        removeNote,
+        notesDispatch,
+        name: "Natnael",
+        lName,
+        changeLName,
+      }}>
+      <NoteContext.Consumer>
+        {(context) => {
+          // use of Context.Consumer to render something based on context value
+          if (context.notes.length > 3) return <h2>yeah 3 </h2>;
+          else return null;
+        }}
+      </NoteContext.Consumer>
       <h1>notes</h1>
-      <NoteList
-        notes={notes}
-        removeNote={removeNote}
-      />
-      <NoteForm
-        title={title}
-        setTitle={setTitle}
-        noteContent={noteContent}
-        setContent={setContent}
-        notesDispatch={notesDispatch}
-      />
-    </div>
+      <NoteList />
+      <NoteForm />
+    </NoteContext.Provider>
   );
 };

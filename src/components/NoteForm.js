@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import NoteContext from "../context/NoteContext";
 
-export default ({ notesDispatch }) => {
+export default () => {
+  const onSubmit = () => {};
   const [title, setTitle] = useState("");
   const [noteContent, setContent] = useState("");
-
+  const { notesDispatch } = useContext(NoteContext);
   const addNotes = () => {
     notesDispatch({ type: "add", title, noteContent });
     setTitle("");
@@ -13,8 +15,8 @@ export default ({ notesDispatch }) => {
     <div className="form">
       <input
         type="text"
+        placeholder="Note Tiltle"
         value={title}
-        plalceholder="Note Title"
         onChange={(e) => {
           setTitle(e.target.value);
         }}
