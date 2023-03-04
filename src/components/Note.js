@@ -1,7 +1,8 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import NoteContext from "../context/NoteContext";
+import useMousePosition from "../hooks/useMousePosition";
 
-export default class Notes extends React.Component {
+class Notes extends React.Component {
   static contextType = NoteContext;
   constructor(props) {
     super(props);
@@ -27,15 +28,19 @@ export default class Notes extends React.Component {
 
 const Note = ({ title, noteContent }) => {
   const { notesDispatch, name } = useContext(NoteContext);
+  const position = useMousePosition();
   const removeNote = (title) => {
     notesDispatch({ type: "remove", title });
   };
   return (
     <div className="note">
-      <p>{name}</p>
+      <h4>
+        {position.x},{position.y}
+      </h4>
       <h4>{title}</h4>
       <p>{noteContent}</p>
       <button onClick={(e) => removeNote(title)}> X</button>
     </div>
   );
 };
+export default Note;
