@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import NoteContext from "../context/NoteContext";
 
 export default () => {
@@ -6,6 +6,8 @@ export default () => {
   const [title, setTitle] = useState("");
   const [noteContent, setContent] = useState("");
   const { notesDispatch } = useContext(NoteContext);
+  const input = useRef(1);
+  console.log(input);
   const addNotes = () => {
     notesDispatch({ type: "add", title, noteContent });
     setTitle("");
