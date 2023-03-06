@@ -1,33 +1,33 @@
-import { useContext, useRef, useState } from "react";
+import { forwardRef, useContext, useRef, useState } from "react";
 import NoteContext from "../context/NoteContext";
+import note from "../reducers/note";
 
-export default () => {
+export default forwardRef((props, ref) => {
   const onSubmit = () => {};
-  const [title, setTitle] = useState("");
-  const [noteContent, setContent] = useState("");
+  const title = useRef();
+  const noteContent = useRef();
   const { notesDispatch } = useContext(NoteContext);
-  const input = useRef(1);
-  console.log(input);
+
   const addNotes = () => {
-    notesDispatch({ type: "add", title, noteContent });
-    setTitle("");
-    setContent("");
+    notesDispatch({
+      type: "add",
+      title: title.current.value,
+      noteContent: noteContent.current.value,
+    });
+    title.current.value = "";
+    noteContent.current.value = "";
   };
   return (
     <div className="form">
       <input
+        ref={title}
         type="text"
         placeholder="Note Tiltle"
-        value={title}
-        onChange={(e) => {
-          setTitle(e.target.value);
-        }}
       />
       <textarea
-        placeholder="Note Content"
-        value={noteContent}
-        onChange={(e) => setContent(e.target.value)}></textarea>
+        ref={noteContent}
+        placeholder="Note Content"></textarea>
       <button onClick={addNotes}>add note</button>
     </div>
   );
-};
+});

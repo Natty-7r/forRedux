@@ -1,4 +1,4 @@
-import logo from "./logo.svg";
+import React, { useRef } from "react";
 import "./App.css";
 import NoteApp from "./components/NoteApp";
 import Footer from "./components/eComponents/Footer/Footer";

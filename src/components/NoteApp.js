@@ -1,4 +1,4 @@
-import { useEffect, useState, useReducer } from "react";
+import { useEffect, useState, useReducer, useRef } from "react";
 import notesReducer from "../reducers/note";
 import NoteForm from "./NoteForm";
 import NoteList from "./NoteList";
@@ -6,8 +6,8 @@ import NoteContext from "../context/NoteContext";
 import note from "../reducers/note";
 
 export default () => {
-  const [title, setTitle] = useState("");
-  const [noteContent, setContent] = useState("");
+  const title = useRef();
+
   const [lName, setLName] = useState("fek");
   const [notes, notesDispatch] = useReducer(notesReducer, []);
 
@@ -47,7 +47,7 @@ export default () => {
       </NoteContext.Consumer>
       <h1>notes</h1>
       <NoteList />
-      <NoteForm />
+      <NoteForm ref={title} />
     </NoteContext.Provider>
   );
 };

@@ -24,7 +24,6 @@ export default () => {
             noteContent={note.noteContent}
           />
         ))}
-        <button onClick={changeLName}>change father Name</button>
       </div>
     </NoteContext.Provider>
   );
