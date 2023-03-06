@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect, memo, useMemo } from "react";
 import NoteContext from "../context/NoteContext";
 import useMousePosition from "../hooks/useMousePosition";
 
@@ -26,21 +26,22 @@ class Notes extends React.Component {
 }
 // Notes.contextType = NoteContext; // use of class.contextType
 
-const Note = ({ title, noteContent }) => {
+const Note = memo(function ({ title, noteContent }) {
   const { notesDispatch, name } = useContext(NoteContext);
-  const position = useMousePosition();
-  const removeNote = (title) => {
-    notesDispatch({ type: "remove", title });
-  };
-  return (
-    <div className="note">
-      <h4>
-        {position.x},{position.y}
-      </h4>
-      <h4>{title}</h4>
-      <p>{noteContent}</p>
-      <button onClick={(e) => removeNote(title)}> X</button>
-    </div>
-  );
-};
+  const noteReturned = useMemo(() => {
+    console.log("memorized note function  part ");
+    const removeNote = (title) => {
+      notesDispatch({ type: "remove", title });
+    };
+    return (
+      <div className="note">
+        <h4></h4>
+        <h4>{title}</h4>
+        <p>{noteContent}</p>
+        <button onClick={(e) => removeNote(title)}> X</button>
+      </div>
+    );
+  }, [title, noteContent]);
+  return noteReturned;
+});
 export default Note;

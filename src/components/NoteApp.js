@@ -1,12 +1,18 @@
-import { useEffect, useState, useReducer, useRef } from "react";
+import { useEffect, useState, useReducer, useRef, useMemo, memo } from "react";
 import notesReducer from "../reducers/note";
 import NoteForm from "./NoteForm";
 import NoteList from "./NoteList";
 import NoteContext from "../context/NoteContext";
-import note from "../reducers/note";
+import useMousePosition from "../hooks/useMousePosition";
 
 export default () => {
+  const [a, A] = useState(1);
   const title = useRef();
+  const position = useMousePosition();
+  const MemodForm = useMemo(() => {
+    const name = "runner running in code ";
+    return NoteForm;
+  }, [a]);
 
   const [lName, setLName] = useState("fek");
   const [notes, notesDispatch] = useReducer(notesReducer, []);
@@ -45,9 +51,14 @@ export default () => {
           else return null;
         }}
       </NoteContext.Consumer>
-      <h1>notes</h1>
+      <h1>
+        notes
+        <br />
+        {position.x},{position.y}
+      </h1>
       <NoteList />
-      <NoteForm ref={title} />
+      <MemodForm me="mm" />
+      <button onClick={(e) => A(a + 1)}>rerender</button>
     </NoteContext.Provider>
   );
 };

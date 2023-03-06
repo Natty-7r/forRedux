@@ -1,9 +1,13 @@
-import { forwardRef, useContext, useRef, useState } from "react";
+import { forwardRef, useContext, useRef, useMemo, memo, useState } from "react";
 import NoteContext from "../context/NoteContext";
-import note from "../reducers/note";
+const d = () => {
+  console.log("ddd");
+  return <h2>ddddddd</h2>;
+};
+const Mine = memo(d);
 
-export default forwardRef((props, ref) => {
-  const onSubmit = () => {};
+const NoteForm = function () {
+  console.log("form compenent ");
   const title = useRef();
   const noteContent = useRef();
   const { notesDispatch } = useContext(NoteContext);
@@ -19,6 +23,7 @@ export default forwardRef((props, ref) => {
   };
   return (
     <div className="form">
+      <Mine />
       <input
         ref={title}
         type="text"
@@ -30,4 +35,6 @@ export default forwardRef((props, ref) => {
       <button onClick={addNotes}>add note</button>
     </div>
   );
-});
+};
+const memodForm = memo(NoteForm);
+export default memodForm;

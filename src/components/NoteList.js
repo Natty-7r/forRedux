@@ -1,21 +1,10 @@
-import { useContext } from "react";
+import { useContext, useMemo } from "react";
 import Note from "./Note";
 import NoteContext from "../context/NoteContext";
 export default () => {
-  const { notes, removeNote, notesDispatch, name, lName, changeLName } =
-    useContext(NoteContext);
-  return (
-    <NoteContext.Provider
-      value={{
-        notes,
-        removeNote,
-        notesDispatch,
-        name: "natty",
-        lName,
-      }}>
-      {
-        //  overriding context value using provider
-      }
+  const { notes } = useContext(NoteContext);
+  const memorizedNotes = useMemo(() => {
+    return (
       <div className="note_list">
         {notes.map((note, index) => (
           <Note
@@ -25,6 +14,7 @@ export default () => {
           />
         ))}
       </div>
-    </NoteContext.Provider>
-  );
+    );
+  }, [notes]);
+  return memorizedNotes;
 };
